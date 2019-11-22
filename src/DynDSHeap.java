@@ -19,12 +19,9 @@ public class DynDSHeap {
         displayArray(memoryArray);
 
         while (inputLength != 0) {
-//            listForDebug.add(memoryArray[0]);
-////            System.out.println(listForDebug);
             output.write(memoryArray[0] + "\n");
             int smallest = memoryArray[0];
             memoryArray = Heap.deleteMinHeap(memoryArray,heapLength);
-            displayArray(memoryArray);
             int next = s.nextInt();
             System.out.println("Add to memory: " + next);
 
@@ -41,18 +38,16 @@ public class DynDSHeap {
                 memoryArray = Heap.buildHeap(memoryArray,dsLength);
                 heapLength=memoryLength;
                 dsLength=0;
-                output.write("End of run \n");
+                output.write("EndRun\n");
 
             }
 
             inputLength--;
-            displayArray(memoryArray);
         }
         for (int i = 0; i < heapLength; i++) {
-//            listForDebug.add(memoryArray[i]);
             output.write(memoryArray[i] + "\n");
         }
-        output.write("End of run \n");
+        output.write("EndRun\n");
         int[] deadSpace = new int[dsLength];
         for (int i = 0; i <dsLength; i++) {
             deadSpace[i] = memoryArray[memoryArray.length-dsLength+i];
@@ -61,8 +56,6 @@ public class DynDSHeap {
         for (int i = 0; i < dsLength; i++) {
             output.write(deadSpace[i] + "\n");
         }
-//        System.out.println(listForDebug);
-//        displayArray(deadSpace);
     }
 
     public static int inputArrayLength(String fileName) throws FileNotFoundException {
@@ -81,9 +74,5 @@ public class DynDSHeap {
             System.out.print(arr[i] + " ");
         }
         System.out.println();
-    }
-
-    public static void writeOut(FileWriter fw, int i) throws IOException {
-        fw.write(i + "\n");
     }
 }
