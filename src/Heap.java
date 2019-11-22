@@ -72,32 +72,31 @@ public class Heap {
             return arr;
         }
 
-
         int lIndex = -1;
         int rIndex = -1;
         int parentIndex = 0;
         int lastE = heap[heapLength - 1];
         heap = removeTheElement(heap, heapLength - 1);
+        heapLength--;
+        heap[0] = lastE;
 
         lIndex = 2 * parentIndex + 1;
         rIndex = 2 * parentIndex + 2;
         boolean endOfHeap = false;
         while (!endOfHeap) {
-            if (heap[lIndex] < heap[rIndex]) {
-                heap[parentIndex] = heap[lIndex];
+            if (lIndex < heapLength && rIndex < heapLength && heap[lIndex] <= heap[rIndex]) {
+                swap(heap, parentIndex, lIndex);
                 parentIndex = lIndex;
-            } else {
-                heap[parentIndex] = heap[rIndex];
+            } else if (lIndex < heapLength && rIndex < heapLength && heap[lIndex] > heap[rIndex]) {
+                swap(heap, parentIndex, rIndex);
                 parentIndex = rIndex;
-            }
+            } else if (rIndex>= heapLength && lIndex<heapLength && heap[parentIndex]>heap[lIndex]){
+                swap(heap, parentIndex, lIndex);
+                endOfHeap = true;
+            } else endOfHeap = true;
             lIndex = 2 * parentIndex + 1;
             rIndex = 2 * parentIndex + 2;
-            if (lIndex >= heapLength || rIndex >= heapLength) {
-                endOfHeap = true;
-            }
         }
-
-        heap[parentIndex] = lastE;
 
         return heap;
     }

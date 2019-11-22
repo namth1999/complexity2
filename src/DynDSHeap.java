@@ -2,10 +2,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DynDSHeap {
     public static void replacementSelection(String filename, FileWriter output, int memoryLength) throws IOException {
+        ArrayList<Integer> listForDebug = new ArrayList<>();
         int inputLength = inputArrayLength(filename);
         int[] memoryArray = new int[memoryLength];
         int heapLength = memoryLength;
@@ -19,9 +21,12 @@ public class DynDSHeap {
         displayArray(memoryArray);
 
         while (inputLength != 0) {
+            listForDebug.add(memoryArray[0]);
+            System.out.println(listForDebug);
             output.write(memoryArray[0] + "\n");
             int smallest = memoryArray[0];
             memoryArray = Heap.deleteMinHeap(memoryArray,heapLength);
+            displayArray(memoryArray);
             int next = s.nextInt();
             System.out.println("Add to memory: " + next);
 
@@ -43,8 +48,10 @@ public class DynDSHeap {
             }
 
             inputLength--;
+            displayArray(memoryArray);
         }
         for (int i = 0; i < heapLength; i++) {
+            listForDebug.add(memoryArray[i]);
             output.write(memoryArray[i] + "\n");
         }
         output.write("EndRun\n");
@@ -56,6 +63,8 @@ public class DynDSHeap {
         for (int i = 0; i < dsLength; i++) {
             output.write(deadSpace[i] + "\n");
         }
+        System.out.println(listForDebug);
+        displayArray(deadSpace);
     }
 
     public static int inputArrayLength(String fileName) throws FileNotFoundException {
