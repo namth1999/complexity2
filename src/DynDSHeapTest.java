@@ -11,11 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DynDSHeapTest {
 
-    int memoryLength = 89;
+    int inputLength = 10000;
+    int memoryLength = 33;
 
     @Test
     void replacementSelection() throws IOException {
-        Main.run(memoryLength);
+        Main.run(inputLength, memoryLength);
         Scanner s = new Scanner(new File("output.txt"));
         boolean runSorted = true;
         int index = 0;
@@ -32,6 +33,7 @@ class DynDSHeapTest {
             }
             index++;
         }
+        System.out.println(index);
         String error = "";
 
         for (int i = 0; i < splitInput.size(); i++) {
