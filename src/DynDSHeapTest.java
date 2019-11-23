@@ -23,27 +23,31 @@ class DynDSHeapTest {
             if (s.hasNextInt()){
                 output.add(s.nextInt());
             } else if (s.hasNext("EndRun")){
-                splitInput.add(index);
+                splitInput.add(index-splitInput.size()+1);
                 s.next();
             }
             index++;
         }
+        String error = "";
 
         for (int i = 0; i < splitInput.size(); i++) {
             if (i+1<splitInput.size()){
-                List<Integer> array = output.subList(i,i+1);
+                List<Integer> array = output.subList(splitInput.get(i),splitInput.get(i+1));
+                System.out.println(array);
                 if (!checkSorted(array)){
                     runSorted = false;
+                    error+=i + " ";
                 }
             } else {
-                List<Integer> array = output.subList(i,splitInput.size());
-                if (!checkSorted(array)){
+                List<Integer> array = output.subList(splitInput.get(i),output.size());
+                System.out.println(array);
+                if (!array.isEmpty() && !checkSorted(array)){
                     runSorted = false;
                 }
             }
         }
 
-        assertTrue(runSorted);
+        assertTrue(runSorted,error);
     }
 
     boolean checkSorted(List<Integer> array) {

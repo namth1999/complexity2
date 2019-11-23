@@ -35,24 +35,28 @@ public class DynDSHeap {
             } else {
                 heapLength--;
                 dsLength++;
-                System.out.println("Increse dead " + dsLength);
+                System.out.println("Increse dead " + dsLength + " heaplength " + heapLength);
                 memoryArray = Heap.add(memoryArray.length,memoryArray,next);
             }
 
-            if (heapLength==0){
+            if (heapLength == 0 || dsLength == memoryLength){
                 memoryArray = Heap.buildHeap(memoryArray,dsLength);
-                heapLength=memoryLength;
+                heapLength = memoryLength;
                 dsLength=0;
                 output.write("EndRun\n");
-
             }
 
             inputLength--;
             displayArray(memoryArray);
         }
+
+
+
         for (int i = 0; i < heapLength; i++) {
-            listForDebug.add(memoryArray[i]);
-            output.write(memoryArray[i] + "\n");
+            listForDebug.add(memoryArray[0]);
+            output.write(memoryArray[0] + "\n");
+            memoryArray = Heap.deleteMinHeap(memoryArray,heapLength);
+            heapLength--;
         }
         output.write("EndRun\n");
         int[] deadSpace = new int[dsLength];
@@ -61,7 +65,10 @@ public class DynDSHeap {
         }
         Heap.buildHeap(deadSpace,dsLength);
         for (int i = 0; i < dsLength; i++) {
-            output.write(deadSpace[i] + "\n");
+            listForDebug.add(deadSpace[0]);
+            output.write(deadSpace[0] + "\n");
+            deadSpace = Heap.deleteMinHeap(deadSpace,dsLength);
+            dsLength--;
         }
         System.out.println(listForDebug);
         displayArray(deadSpace);
