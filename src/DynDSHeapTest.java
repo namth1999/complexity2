@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,8 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DynDSHeapTest {
 
+    int memoryLength = 89;
+
     @Test
-    void replacementSelection() throws FileNotFoundException {
+    void replacementSelection() throws IOException {
+        Main.run(memoryLength);
         Scanner s = new Scanner(new File("output.txt"));
         boolean runSorted = true;
         int index = 0;

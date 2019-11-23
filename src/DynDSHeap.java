@@ -50,21 +50,24 @@ public class DynDSHeap {
             displayArray(memoryArray);
         }
 
-
-
-        for (int i = 0; i < heapLength; i++) {
+        int counter = heapLength;
+        for (int i = 0; i < counter; i++) {
             listForDebug.add(memoryArray[0]);
             output.write(memoryArray[0] + "\n");
             memoryArray = Heap.deleteMinHeap(memoryArray,heapLength);
             heapLength--;
         }
+        displayArray(memoryArray);
         output.write("EndRun\n");
         int[] deadSpace = new int[dsLength];
         for (int i = 0; i <dsLength; i++) {
             deadSpace[i] = memoryArray[memoryArray.length-dsLength+i];
         }
-        Heap.buildHeap(deadSpace,dsLength);
-        for (int i = 0; i < dsLength; i++) {
+        deadSpace = Heap.buildHeap(deadSpace,dsLength);
+        displayArray(deadSpace);
+
+        counter = dsLength;
+        for (int i = 0; i < counter; i++) {
             listForDebug.add(deadSpace[0]);
             output.write(deadSpace[0] + "\n");
             deadSpace = Heap.deleteMinHeap(deadSpace,dsLength);
