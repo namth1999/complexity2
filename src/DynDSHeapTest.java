@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DynDSHeapTest {
 
-    int inputLength = 10000;
-    int memoryLength = 33;
+    int inputLength = 10;
+    int memoryLength = 11;
 
     @Test
     void replacementSelection() throws IOException {

@@ -8,6 +8,9 @@ public class DynDSHeap {
     public static void replacementSelection(String filename, FileWriter output, int memoryLength) throws IOException {
         int inputLength = inputArrayLength(filename);
         int[] memoryArray = new int[memoryLength];
+        if (inputLength<memoryLength){
+            memoryLength = inputLength;
+        }
         int heapLength = memoryLength;
         int dsLength = memoryLength - heapLength;
         Scanner s = new Scanner(new File(filename));
