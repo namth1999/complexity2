@@ -84,13 +84,16 @@ public class Heap {
         rIndex = 2 * parentIndex + 2;
         boolean endOfHeap = false;
         while (!endOfHeap) {
-            if (lIndex < heapLength && rIndex < heapLength && heap[lIndex] <= heap[rIndex] && heap[parentIndex]>=heap[lIndex]) {
+            if (lIndex < heapLength && rIndex < heapLength
+                    && heap[lIndex] <= heap[rIndex] && heap[parentIndex] >= heap[lIndex]) {
                 swap(heap, parentIndex, lIndex);
                 parentIndex = lIndex;
-            } else if (lIndex < heapLength && rIndex < heapLength && heap[lIndex] > heap[rIndex]&& heap[parentIndex]>=heap[rIndex]) {
+            } else if (lIndex < heapLength && rIndex < heapLength
+                    && heap[lIndex] > heap[rIndex] && heap[parentIndex] >= heap[rIndex]) {
                 swap(heap, parentIndex, rIndex);
                 parentIndex = rIndex;
-            } else if (rIndex>= heapLength && lIndex<heapLength && heap[parentIndex]>heap[lIndex] && heap[parentIndex]>=heap[lIndex]){
+            } else if (rIndex >= heapLength && lIndex < heapLength
+                    && heap[parentIndex] > heap[lIndex] && heap[parentIndex] >= heap[lIndex]) {
                 swap(heap, parentIndex, lIndex);
                 endOfHeap = true;
             } else endOfHeap = true;

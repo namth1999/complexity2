@@ -3,7 +3,7 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Main.run(10000,33);
+        Main.run(1000000,33);
     }
 
     public static void run(int inputLength, int memoryLength) throws IOException {

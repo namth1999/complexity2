@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DynDSHeapTest {
 
-    int inputLength = 10;
-    int memoryLength = 11;
+    int inputLength = 10000; //N
+    int memoryLength = 100; //H
 
     @Test
     void replacementSelection() throws IOException {
@@ -21,8 +21,12 @@ class DynDSHeapTest {
         int index = 0;
 
         List<Integer> output = new ArrayList<>();
+
+        //Number of runs
         List<Integer> splitInput = new ArrayList<>();
         splitInput.add(0);
+
+        //add to output array if next is int
         while (s.hasNext()){
             if (s.hasNextInt()){
                 output.add(s.nextInt());
@@ -32,9 +36,11 @@ class DynDSHeapTest {
             }
             index++;
         }
-        System.out.println(index);
+
+        System.out.println("Runs: " + splitInput.size());
         String error = "";
 
+        //found out the array that have sorting issue, assertTrue fail if 1 array is not sorted
         for (int i = 0; i < splitInput.size(); i++) {
             if (i+1<splitInput.size()){
                 List<Integer> array = output.subList(splitInput.get(i),splitInput.get(i+1));
