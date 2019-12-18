@@ -4,7 +4,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * This class represents the replacement selection algorithm
+ */
 public class DynDSHeap {
+    /**
+     * Replacement selection algorithm
+     * @param filename where to output result to this file
+     * @param output writer of the output file
+     * @param memoryLength M
+     * @throws IOException
+     */
     public static void replacementSelection(String filename, FileWriter output, int memoryLength) throws IOException {
         //find out the input length
         int inputLength = inputArrayLength(filename);
@@ -76,6 +86,12 @@ public class DynDSHeap {
         }
     }
 
+    /**
+     * Number of elements of a input file
+     * @param fileName input file name
+     * @return number of elements
+     * @throws FileNotFoundException if no file exist with such name
+     */
     public static int inputArrayLength(String fileName) throws FileNotFoundException {
         Scanner s = new Scanner(new File(fileName));
         int length = 0;

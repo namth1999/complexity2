@@ -1,5 +1,14 @@
+/**
+ * Class representing logic of a min heap or function of a min heap.
+ */
 public class Heap {
 
+    /**
+     * build an array to a heap
+     * @param arr array to be built
+     * @param arrLength length of arr
+     * @return a heap based on provided array
+     */
     public static int[] buildHeap(int[] arr, int arrLength) {
         int result[] = {};
 
@@ -9,6 +18,13 @@ public class Heap {
         return result;
     }
 
+    /**
+     * Insert a new elements to the provided heap without breaking the rule
+     * @param heap provided heap
+     * @param heapLength length of the heap
+     * @param value element to be inserted
+     * @return a new min heap with the added element
+     */
     public static int[] insertMinHeap(int[] heap, int heapLength, int value) {
         int insertNumIndex = -1;
         int parentIndex = -1;
@@ -35,6 +51,12 @@ public class Heap {
         return arr;
     }
 
+    /**
+     * Delete the min element of a provided min heap
+     * @param heap provided heap
+     * @param heapLength length of a heap
+     * @return a new min heap after remove and heapify
+     */
     public static int[] deleteMinHeap(int[] heap, int heapLength) {
         if (heapLength == 0 || heapLength == 1) {
             int[] arr = {};
@@ -103,6 +125,10 @@ public class Heap {
 
         return heap;
     }
+
+    /**
+     * Array helper function (add, delete, swap)
+     */
 
     private static int[] removeTheElement(int[] arr,
                                           int index) {
