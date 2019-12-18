@@ -9,7 +9,7 @@ public class Heap {
         return result;
     }
 
-    public static int[] insertMinHeap(int[] heap, int heapLength, int insertNum) {
+    public static int[] insertMinHeap(int[] heap, int heapLength, int value) {
         int insertNumIndex = -1;
         int parentIndex = -1;
         int[] arr = new int[heapLength];
@@ -18,7 +18,7 @@ public class Heap {
             arr[i] = heap[i];
         }
 
-        arr = add(arr.length, arr, insertNum);
+        arr = add(arr.length, arr, value);
         insertNumIndex = arr.length - 1;
         parentIndex = (insertNumIndex - 1) / 2;
 

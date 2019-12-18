@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DynDSHeapTest {
 
-    int inputLength = 10000; //N
-    int memoryLength = 100; //H
+    int inputLength = 1000; //N
+    int memoryLength = 15; //M
 
     @Test
     void replacementSelection() throws IOException {
@@ -37,8 +37,8 @@ class DynDSHeapTest {
             index++;
         }
 
-        System.out.println("Runs: " + splitInput.size());
         String error = "";
+        int emptyArrayCount = 0;
 
         //found out the array that have sorting issue, assertTrue fail if 1 array is not sorted
         for (int i = 0; i < splitInput.size(); i++) {
@@ -51,12 +51,17 @@ class DynDSHeapTest {
                 }
             } else {
                 List<Integer> array = output.subList(splitInput.get(i),output.size());
-                System.out.println(array);
                 if (!array.isEmpty() && !checkSorted(array)){
                     runSorted = false;
+                    System.out.println(array);
+                } else {
+                    emptyArrayCount++;
+
                 }
             }
         }
+        System.out.println("Runs: " + (splitInput.size()-emptyArrayCount));
+
 
         assertTrue(runSorted,error);
     }
